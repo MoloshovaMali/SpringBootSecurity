@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    body {
+        background-image: url("https://i.pinimg.com/564x/da/09/ff/da09ff22609d268e93dd094918fb4f03.jpg");
+        background-size: cover;
+    }
+</style>
+<table style="width: 100%">
+    <tr>
+        <td>#</td>
+        <td>First Name</td>
+        <td>Email</td>
+        <td>Last Name</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+    <tr th:each="student:${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.lastName}"></td>
+
+        <td>
+            <a th:href="@{/students/update/{id}(id=${student.id})}">
+                <button style="height: auto ;background-color: #2fffe0 ;box-shadow: #bfe184 0 -10px 6px inset;">UPDATE
+                </button>
+            </a>
+        </td>
+        <td>
+            <form th:method="Delete" th:action="@{/students/delete(id=${student.id})}">
+                <button type="submit"
+                        style="height: auto ;background-color: #cbafb3 ;  box-shadow: #e31212 0 -10px 6px inset;">DELETE
+                </button>
+            </form>
+        </td>
+
+    </tr>
+</table>
+
+</body>
+</html>

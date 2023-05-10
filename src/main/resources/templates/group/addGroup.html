@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group</title>
+</head>
+<style>
+    body {
+        background-image: url("https://i.pinimg.com/564x/da/09/ff/da09ff22609d268e93dd094918fb4f03.jpg");
+        background-size: cover;
+    }
+
+    table, input {
+        text-align: center;
+    }
+
+    form {
+        margin-top: 250px;
+    }
+</style>
+<body>
+<div style="text-align: center">
+    <form th:action="@{saveGroup}"
+          th:method="post"
+          th:object="${group}">
+
+
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;height: 30px" size="80px"
+               th:type="text" th:field="*{groupName}" placeholder="group name">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;height: 30px" size="80px"
+               th:type="text" th:field="*{dateOfStart}" placeholder="date of start">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;height: 30px" size="80px"
+               th:type="text" th:field="*{dateOfFinish}" placeholder="date of finish">
+        <br>
+        <br>
+        <select th:field="*{courseId}">
+            <option th:each="course:${courseList}"
+                    th:value="${course.id}"
+                    th:text="${course.courseName}">
+            </option>
+        </select>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;height: 30px" size="40px"
+               type="submit" value="add group">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;height: 30px" size="40px"
+               type="submit" value="go back">
+    </form>
+
+</div>
+
+
+</body>
+</html>

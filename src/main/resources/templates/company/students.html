@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<a href="/companies">
+    <button class="ui-button" type="button">COMPANY</button>
+</a>
+<a href="/courses">
+    <button class="ui-button" type="button">COURSE</button>
+</a>
+<a href="/groups">
+    <button class="ui-button" type="button">GROUP</button>
+</a>
+<a href="/students">
+    <button class="ui-button" type="button">STUDENT</button>
+</a>
+<a href="/teachers">
+    <button class="ui-button" type="button">TEACHER</button>
+</a>
+<style>
+    .ui-button {
+        appearance: none;
+        background-color: #FFFFFF;
+        border-radius: 40em;
+        border-style: none;
+        box-shadow: #a12fff 0 -12px 6px inset;
+        box-sizing: border-box;
+        color: #000000;
+        cursor: pointer;
+        display: inline-block;
+        font-family: -apple-system, sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: -.24px;
+        margin: 0;
+        outline: none;
+        padding: 1rem 1.3rem;
+        text-align: center;
+        text-decoration: none;
+        transition: all .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .ui-button:hover {
+        background-color: #29ffbf;
+        box-shadow: #1433ff 0 -6px 8px inset;
+        transform: scale(1.125);
+    }
+
+    .ui-button:active {
+        transform: scale(1.25);
+    }
+
+    @media (min-width: 768px) {
+        .ui-button {
+            font-size: 1.0rem;
+            padding: .75rem 2rem;
+        }
+    }
+</style>
+<style>
+    table {
+        margin: auto;
+    }
+
+    table, th, td {
+        background-color: #2fffe0;
+        box-shadow: #cc84e1 0 -10px 6px inset;
+    }
+
+    body {
+        background: url("https://i.pinimg.com/564x/da/09/ff/da09ff22609d268e93dd094918fb4f03.jpg");
+        background-size: cover;
+    }
+</style>
+<html>
+<body>
+<h3>COUNT</h3>
+<h1 th:name="count" th:text="${count}"></h1>
+
+<table style="width: 100%">
+    <tr>
+        <td>#</td>
+        <td>First Name</td>
+        <td>Email</td>
+        <td>Last Name</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+    <tr th:each="student:${studentsList}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td>
+            <a th:href="@{/students/update/{id}(id=${student.id})}">
+                <button style="height: auto ;background-color: #2fffe0 ;box-shadow: #bfe184 0 -10px 6px inset;">UPDATE
+                </button>
+            </a>
+        </td>
+
+        <td>
+            <form th:method="Delete" th:action="@{/students/delete(id=${student.id})}">
+                <button type="submit"
+                        style="height: auto ;background-color: #2fffe0 ;  box-shadow: #d70fd3 0 -10px 6px inset;">DELETE
+                </button>
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br>
+
+</body>
+</html>

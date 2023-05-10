@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-image: url("https://i.pinimg.com/564x/da/09/ff/da09ff22609d268e93dd094918fb4f03.jpg");
+        background-size: cover;
+    }
+</style>
+<body>
+<div style="text-align: center">
+    <form th:action="@{/courses/{id}(id=${updateCourse.id})}"
+          th:method="patch"
+          th:object="${updateCourse}">
+
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="80px" th:type="text"
+               th:field="*{courseName}" placeholder="course name">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="80px" th:type="text"
+               th:field="*{durationMonth}" placeholder="duration month">
+        <br>
+        <select th:field="*{companyId}">
+            <option th:each="company:${companyList}"
+                    th:value="${company.id}"
+                    th:text="${company.companyName}">
+            </option>
+        </select>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="40px" type="submit"
+               value="update">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="40px" type="submit"
+               value="go back">
+    </form>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-image: url("https://i.pinimg.com/564x/da/09/ff/da09ff22609d268e93dd094918fb4f03.jpg");
+        background-size: cover;
+    }
+</style>
+<body>
+<div style="text-align: center">
+    <form th:action="@{/groups/{id}(id=${updateGroup.id})}"
+          th:method="patch"
+          th:object="${updateGroup}">
+
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="80px" th:type="text"
+               th:field="*{groupName}" placeholder="group name">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="80px" th:type="text"
+               th:field="*{dateOfStart}" placeholder="date of start">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="80px" th:type="text"
+               th:field="*{dateOfFinish}" placeholder="date of finish">
+        <br>
+        <select th:field="*{courseId}">
+            <option th:each="course:${courseList}"
+                    th:value="${course.id}"
+                    th:text="${course.courseName}">
+            </option>
+        </select>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="40px" type="submit"
+               value="update">
+        <br>
+        <br>
+        <input style="background-color: #2fffe0 ;  box-shadow: #ddabec 0 -10px 6px inset;" size="40px" type="submit"
+               value="go back">
+    </form>
+</div>
+
+
+</body>
+</html>

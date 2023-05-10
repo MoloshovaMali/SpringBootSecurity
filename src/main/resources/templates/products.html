@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table style="width:60%">
+    <tr>
+        <td>#</td>
+        <td>Name</td>
+        <td>Brand</td>
+
+    </tr>
+    <tr th:each="product:${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.brand}"></td>
+    </tr>
+</table>
+<form>
+    <input sec:authorize="hasAuthority('ADMIN')" style=" display: block; margin:auto; font-size:15px;" class="b1" type="button" value="ADD"
+           onclick="window.location.href = '/new'">
+</form>
+
+</body>
+</html>
