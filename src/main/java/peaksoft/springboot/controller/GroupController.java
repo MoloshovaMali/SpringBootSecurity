@@ -22,12 +22,13 @@ public class GroupController {
     private final GroupService groupService;
     private final CourseService courseService;
     private final StudentService studentService;
-
-
-
     @ModelAttribute("courseList")
     public List<Course> coursesList() {
         return courseService.getAllCourse();
+    }
+    @ModelAttribute("studentList")
+    public List<Student> getStudents() {
+        return studentService.getAllStudents();
     }
 
     @GetMapping()
@@ -59,7 +60,7 @@ public class GroupController {
 
     @PatchMapping("{id}")
     public String saveUpdateGroup(@PathVariable("id") Long id, @ModelAttribute("group") Group group) {
-        groupService.updateGroup(id, group);
+        groupService.updateGroup(id,group.getCourseId(), group);
         return "redirect:/groups";
     }
 
@@ -70,15 +71,15 @@ public class GroupController {
         return "redirect:/groups";
     }
 
-    @GetMapping("/search")
-    public String getStudentName(Model model, String name) {
-        List<Student> students = studentService.getStudentByName(name);
-        List<Student> studentList = studentService.getAllStudents();
-        if (name != null) {
-            model.addAttribute("students", students);
-        } else {
-            model.addAttribute("students", studentList);
-        }
-        return "group/getStudents";
-    }
+//    @GetMapping("/search")
+//    public String getStudentName(Model model, String name) {
+////        List<Student> students = studentService.getStudentByName(name);
+//        List<Student> studentList = studentService.getAllStudents();
+//        if (name != null) {
+//            model.addAttribute("students", students);
+//        } else {
+//            model.addAttribute("students", studentList);
+//        }
+//        return "group/getStudents";
+//    }
 }

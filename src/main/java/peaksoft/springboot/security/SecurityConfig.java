@@ -38,12 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .antMatchers("/").hasAnyAuthority("ADMIN","USER")
-                .antMatchers("/new").hasAnyAuthority("ADMIN")
+                .antMatchers("/companies/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/courses**").hasAnyAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
-                .loginPage("/login")
+              //  .loginPage()
                 .and()
                 .logout().permitAll();
 

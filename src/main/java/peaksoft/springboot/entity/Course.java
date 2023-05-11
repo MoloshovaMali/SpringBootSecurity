@@ -21,19 +21,12 @@ public class Course {
     private String durationMonth;
     @Transient
     private Long companyId;
-    @Transient
-    private Long teacherId;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinColumn(name = "company_id")
     private Company company;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "courseList")
-//    @JoinTable(
-//            name = "groups_courses",
-//            joinColumns = @JoinColumn(name = "courses_id"),
-//            inverseJoinColumns = @JoinColumn(name = "groups_id")
-//    )
     private List<Group> groupList;
 
     @OneToOne(cascade = CascadeType.ALL)

@@ -26,37 +26,33 @@ public class StudentService {
     }
 
     public void addStudent(Long groupId, Student student) {
-      Group group=groupRepository.findById(groupId).get();
-      List<Group>groups=new ArrayList<>();
-      groups.add(group);
-      List<Student>students=new ArrayList<>();
-      students.add(student);
-      group.setStudentList(students);
-      studentRepository.save(student);
-
+//      Group group=groupRepository.findById(groupId).get();
+//      List<Group>groups=new ArrayList<>();
+//      groups.add(group);
+//      List<Student>students=new ArrayList<>();
+//      students.add(student);
+//      group.setStudentList(students);
+//      studentRepository.save(student);
+        Group group=groupRepository.findById(groupId).get();
+        student.setGroup(group);
+        studentRepository.save(student);
     }
 
     public Student getStudentById(Long id) {
         return studentRepository.findById(id).get();
     }
 
-    public void updateStudent(Long studentId, Student student) {
-//        Student student1=studentRepository.findById(studentId).get();
-//        student1.setFirstName(student.getFirstName());
-//        student1.setEmail(student.getEmail());
-//        student1.setLastName(student.getLastName());
-//        Group group=groupRepository.findById(studentId).get();
-//        List<Student>students=new ArrayList<>();
-//        students.add(student1);
-//        group.setStudentList(students);
-//        List<Group>groups=new ArrayList<>();
-//        groups.add(group);
-//        student1.setGroup(groups);
-//        studentRepository.save(student1);
+    public void updateStudent(Long studentId,Long groupId, Student student) {
+        Group group=groupRepository.findById(groupId).get();
         Student student1 = studentRepository.findById(studentId).get();
         student1.setFirstName(student.getFirstName());
         student1.setEmail(student.getEmail());
         student1.setLastName(student.getLastName());
+        student1.setStudyFormat(student.getStudyFormat());
+        List<Student>students=new ArrayList<>();
+        students.add(student1);
+        group.setStudentList(students);
+        student1.setGroup(group);
         studentRepository.save(student1);
     }
 
@@ -65,10 +61,10 @@ public class StudentService {
     }
 
 //    public List<Student> getStudentsByCompany(Long companyId) {
-//        return studentDao.getStudentsByCompany(companyId);
+//        return studentRepository.getStudentByCompany(companyId);
 //    }
 
 //    public List<Student> getStudentByName(String name) {
-//        return studentDao.getStudentByName(name);
+//        return studentRepository.getStudentByName(name);
 //    }
 }

@@ -28,14 +28,14 @@ public class TeacherService {
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
-    public void addTeacher(Long courseId, Teacher teacher) {
-        Course course=courseRepository.findById(courseId).get();
-        List<Course>courses=new ArrayList<>();
-        courses.add(course);
-        List<Teacher>teachers=new ArrayList<>();
-        teachers.add(teacher);
-        course.setTeacher(teachers);
-        teacherRepository.save(teacher);
+
+    public void addTeacher(Long companyId, Teacher teacher) {
+        Teacher teacher1 = teacherRepository.findById(companyId).get();
+        teacher1.setFirstName(teacher.getFirstName());
+        teacher1.setEmail(teacher.getEmail());
+        teacher1.setLastName(teacher.getLastName());
+        teacherRepository.save(teacher1);
+
 
     }
 
@@ -43,20 +43,20 @@ public class TeacherService {
         return teacherRepository.findById(id).get();
     }
 
-    public void updateTeacher(Long teacherId, Teacher teacher) {
-
-        Teacher teacher1=teacherRepository.findById(teacherId).get();
-        teacher1.setFirstName(teacher1.getFirstName());
-        teacher1.setEmail(teacher1.getEmail());
-        teacher1.setLastName(teacher1.getLastName());
-        Student student=studentRepository.findById(teacherId).get();
-        List<Teacher>teachers=new ArrayList<>();
-        teachers.add(teacher1);
+    public void updateTeacher(Long teacherId,Long courseId, Teacher teacher) {
+    Course course=courseRepository.findById(courseId).get();
+    Teacher teacher1=teacherRepository.findById(teacherId).get();
+    teacher1.setFirstName(teacher.getFirstName());
+    teacher1.setEmail(teacher.getEmail());
+    teacher1.setLastName(teacher.getLastName());
+    course.setTeacher(teacher1);
+    teacher1.setCourse(course);
+    teacherRepository.save(teacher1);
 
     }
 
     public void deleteTeacher(Teacher teacher) {
-       teacherRepository.delete(teacher);
+        teacherRepository.delete(teacher);
     }
 
 

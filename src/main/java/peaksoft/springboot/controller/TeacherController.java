@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import peaksoft.springboot.entity.Course;
+import peaksoft.springboot.entity.Student;
+import peaksoft.springboot.entity.Teacher;
+import peaksoft.springboot.service.CourseService;
+import peaksoft.springboot.service.StudentService;
+import peaksoft.springboot.service.TeacherService;
 
 import java.util.List;
 
@@ -55,7 +61,7 @@ public class TeacherController {
 
     @PatchMapping("{id}")
     public String saveUpdateTeacher(@PathVariable("id") Long id, @ModelAttribute("teacher") Teacher teacher) {
-        teacherService.updateTeacher(id, teacher);
+        teacherService.updateTeacher(id,teacher.getCourseId(), teacher);
         return "redirect:/teachers";
     }
 
@@ -66,13 +72,13 @@ public class TeacherController {
         return "redirect:/teachers";
     }
 
-    @GetMapping("/students/{teacherId}")
-    public String getStudentByCompanyId(@PathVariable("teacherId") Long teacherId, Model model) {
-        List<Student> studentList = studentService.getStudentsByCompany(teacherId);
-        model.addAttribute("studentList", studentList);
-        model.addAttribute("count", studentList.size());
-        return "teacher/students";
-    }
+//    @GetMapping("/students/{teacherId}")
+//    public String getStudentByCompanyId(@PathVariable("teacherId") Long teacherId, Model model) {
+//        List<Student> studentList = studentService.getStudentsByCompany(teacherId);
+//        model.addAttribute("studentList", studentList);
+//        model.addAttribute("count", studentList.size());
+//        return "teacher/students";
+//    }
 
 
 }

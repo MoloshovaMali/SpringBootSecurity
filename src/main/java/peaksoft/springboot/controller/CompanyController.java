@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import peaksoft.springboot.entity.Company;
-import peaksoft.springboot.entity.Student;
 import peaksoft.springboot.service.CompanyService;
 import peaksoft.springboot.service.StudentService;
 
@@ -16,7 +15,9 @@ import java.util.List;
 @RequestMapping("/companies")
 @RequiredArgsConstructor
 public class CompanyController {
+    @Autowired
     private final CompanyService companyService;
+    @Autowired
     private final StudentService studentService;
 
 
